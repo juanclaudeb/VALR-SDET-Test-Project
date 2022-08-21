@@ -1,0 +1,975 @@
+{
+	"info": {
+		"_postman_id": "93700ae3-e38b-455e-8bbf-00507ec320e5",
+		"name": "VALR API COLLECTION",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19044530"
+	},
+	"item": [
+		{
+			"name": "Order Limits Functional Flow Tests",
+			"item": [
+				{
+					"name": "POST Order Limits",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
+									"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
+									"var requestTimestamp = (new Date()).getTime();",
+									"function getPath(url) {",
+									"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
+									"    var result = url.match(pathRegex);",
+									"    return result && result.length > 1 ? result[1] : ''; ",
+									"}",
+									"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
+									"    var requestPath = getPath(requestUrl);",
+									"    if (httpMethod == 'GET' || !requestBody) {",
+									"        requestBody = ''; ",
+									"    } ",
+									"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
+									"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
+									"    return hmacDigest;",
+									"}",
+									"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
+									"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"response status should be 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"pm.test(\"Id data expected\", function() {",
+									"    var idJson = pm.response.json();",
+									"",
+									"    pm.expect(idJson).not.empty.is.false;",
+									"    pm.expect(idJson).not.eql(null);",
+									"});",
+									"",
+									"pm.test(\"respons in < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"headers expected\", function () {",
+									"    pm.response.to.have.header(\"strict-transport-security\");",
+									"    pm.response.to.have.header(\"content-type\");",
+									"    pm.response.to.have.header(\"x-valr-upstream-service-time\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-VALR-API-KEY",
+								"value": "{{yourApiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-SIGNATURE",
+								"value": "{{requestSignature}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-TIMESTAMP",
+								"value": "{{requestTimestamp}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"side\": \"SELL\",\n\t\"quantity\": \"0.100000\",\n\t\"price\": \"10000\",\n\t\"pair\": \"BTCZAR\",\n\t\"postOnly\": true,\n\t\"customerOrderId\": \"1235\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.valr.com/v1/orders/limit",
+							"protocol": "https",
+							"host": [
+								"api",
+								"valr",
+								"com"
+							],
+							"path": [
+								"v1",
+								"orders",
+								"limit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Order Limits valid time in force request",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
+									"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
+									"var requestTimestamp = (new Date()).getTime();",
+									"function getPath(url) {",
+									"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
+									"    var result = url.match(pathRegex);",
+									"    return result && result.length > 1 ? result[1] : ''; ",
+									"}",
+									"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
+									"    var requestPath = getPath(requestUrl);",
+									"    if (httpMethod == 'GET' || !requestBody) {",
+									"        requestBody = ''; ",
+									"    } ",
+									"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
+									"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
+									"    return hmacDigest;",
+									"}",
+									"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
+									"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"response status should be 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"pm.test(\"Id data expected\", function() {",
+									"    var idJson = pm.response.json();",
+									"",
+									"    pm.expect(idJson).not.empty.is.false;",
+									"    pm.expect(idJson).not.eql(null);",
+									"});",
+									"",
+									"pm.test(\"respons in < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"headers expected\", function () {",
+									"    pm.response.to.have.header(\"strict-transport-security\");",
+									"    pm.response.to.have.header(\"content-type\");",
+									"    pm.response.to.have.header(\"x-valr-upstream-service-time\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-VALR-API-KEY",
+								"value": "{{yourApiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-SIGNATURE",
+								"value": "{{requestSignature}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-TIMESTAMP",
+								"value": "{{requestTimestamp}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"side\": \"SELL\",\n\t\"quantity\": \"0.100000\",\n\t\"price\": \"10000\",\n\t\"pair\": \"BTCZAR\",\n\t\"postOnly\": true,\n\t\"customerOrderId\": \"1235\",\n    \"timeInForce\": \"GTC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.valr.com/v1/orders/limit",
+							"protocol": "https",
+							"host": [
+								"api",
+								"valr",
+								"com"
+							],
+							"path": [
+								"v1",
+								"orders",
+								"limit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Order Limits without optional fields",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
+									"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
+									"var requestTimestamp = (new Date()).getTime();",
+									"function getPath(url) {",
+									"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
+									"    var result = url.match(pathRegex);",
+									"    return result && result.length > 1 ? result[1] : ''; ",
+									"}",
+									"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
+									"    var requestPath = getPath(requestUrl);",
+									"    if (httpMethod == 'GET' || !requestBody) {",
+									"        requestBody = ''; ",
+									"    } ",
+									"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
+									"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
+									"    return hmacDigest;",
+									"}",
+									"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
+									"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"response status should be 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"pm.test(\"Id data expected\", function() {",
+									"    var idJson = pm.response.json();",
+									"",
+									"    pm.expect(idJson).not.empty.is.false;",
+									"    pm.expect(idJson).not.eql(null);",
+									"});",
+									"",
+									"pm.test(\"respons in < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"headers expected\", function () {",
+									"    pm.response.to.have.header(\"strict-transport-security\");",
+									"    pm.response.to.have.header(\"content-type\");",
+									"    pm.response.to.have.header(\"x-valr-upstream-service-time\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-VALR-API-KEY",
+								"value": "{{yourApiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-SIGNATURE",
+								"value": "{{requestSignature}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-TIMESTAMP",
+								"value": "{{requestTimestamp}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"side\": \"SELL\",\n\t\"quantity\": \"0.100000\",\n\t\"price\": \"10000\",\n\t\"pair\": \"BTCZAR\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.valr.com/v1/orders/limit",
+							"protocol": "https",
+							"host": [
+								"api",
+								"valr",
+								"com"
+							],
+							"path": [
+								"v1",
+								"orders",
+								"limit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order Limits Negative Flow Tests",
+			"item": [
+				{
+					"name": "POST Order Limits missing pair field",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
+									"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
+									"var requestTimestamp = (new Date()).getTime();",
+									"function getPath(url) {",
+									"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
+									"    var result = url.match(pathRegex);",
+									"    return result && result.length > 1 ? result[1] : ''; ",
+									"}",
+									"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
+									"    var requestPath = getPath(requestUrl);",
+									"    if (httpMethod == 'GET' || !requestBody) {",
+									"        requestBody = ''; ",
+									"    } ",
+									"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
+									"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
+									"    return hmacDigest;",
+									"}",
+									"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
+									"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"response status should be 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Invalid request for missing pair field test\", function() {",
+									"    var json = pm.response.json();",
+									"",
+									"    pm.expect(json.code).eql(-11);",
+									"    pm.expect(json.message).eql(\"Invalid Request, please check your request and try again\");",
+									"    pm.expect(json.validationErrors.errors[0].field).eql(\"pair\");",
+									"    pm.expect(json.validationErrors.errors[0].message).eql(\"must not be blank\");",
+									"});",
+									"",
+									"pm.test(\"respons in < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"headers expected\", function () {",
+									"    pm.response.to.have.header(\"x-valr-upstream-service-time\");",
+									"    pm.response.to.have.header(\"content-type\");",
+									"    pm.response.to.have.header(\"x-xss-protection\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-VALR-API-KEY",
+								"value": "{{yourApiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-SIGNATURE",
+								"value": "{{requestSignature}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-TIMESTAMP",
+								"value": "{{requestTimestamp}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"side\": \"SELL\",\n\t\"quantity\": \"0.100000\",\n\t\"price\": \"10000\",\n\t\"postOnly\": true,\n\t\"customerOrderId\": \"1235\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.valr.com/v1/orders/limit",
+							"protocol": "https",
+							"host": [
+								"api",
+								"valr",
+								"com"
+							],
+							"path": [
+								"v1",
+								"orders",
+								"limit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Order Limits missing price field",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
+									"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
+									"var requestTimestamp = (new Date()).getTime();",
+									"function getPath(url) {",
+									"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
+									"    var result = url.match(pathRegex);",
+									"    return result && result.length > 1 ? result[1] : ''; ",
+									"}",
+									"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
+									"    var requestPath = getPath(requestUrl);",
+									"    if (httpMethod == 'GET' || !requestBody) {",
+									"        requestBody = ''; ",
+									"    } ",
+									"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
+									"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
+									"    return hmacDigest;",
+									"}",
+									"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
+									"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"response status should be 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Invalid request for missing price field test\", function() {",
+									"    var json = pm.response.json();",
+									"",
+									"    pm.expect(json.code).eql(-11);",
+									"    pm.expect(json.message).eql(\"Invalid Request, please check your request and try again\");",
+									"    pm.expect(json.validationErrors.errors[0].field).eql(\"price\");",
+									"    pm.expect(json.validationErrors.errors[0].message).eql(\"must not be blank\");",
+									"});",
+									"",
+									"pm.test(\"respons in < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"headers expected\", function () {",
+									"    pm.response.to.have.header(\"x-valr-upstream-service-time\");",
+									"    pm.response.to.have.header(\"content-type\");",
+									"    pm.response.to.have.header(\"x-xss-protection\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-VALR-API-KEY",
+								"value": "{{yourApiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-SIGNATURE",
+								"value": "{{requestSignature}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-TIMESTAMP",
+								"value": "{{requestTimestamp}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"side\": \"SELL\",\n\t\"quantity\": \"0.100000\",\n\t\"pair\": \"BTCZAR\",\n\t\"postOnly\": true,\n\t\"customerOrderId\": \"1235\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.valr.com/v1/orders/limit",
+							"protocol": "https",
+							"host": [
+								"api",
+								"valr",
+								"com"
+							],
+							"path": [
+								"v1",
+								"orders",
+								"limit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Order Limits missing quantity field",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
+									"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
+									"var requestTimestamp = (new Date()).getTime();",
+									"function getPath(url) {",
+									"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
+									"    var result = url.match(pathRegex);",
+									"    return result && result.length > 1 ? result[1] : ''; ",
+									"}",
+									"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
+									"    var requestPath = getPath(requestUrl);",
+									"    if (httpMethod == 'GET' || !requestBody) {",
+									"        requestBody = ''; ",
+									"    } ",
+									"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
+									"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
+									"    return hmacDigest;",
+									"}",
+									"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
+									"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"response status should be 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Invalid request for missing quantity field test\", function() {",
+									"    var json = pm.response.json();",
+									"",
+									"    pm.expect(json.code).eql(-11);",
+									"    pm.expect(json.message).eql(\"Invalid Request, please check your request and try again\");",
+									"    pm.expect(json.validationErrors.errors[0].field).eql(\"quantity\");",
+									"    pm.expect(json.validationErrors.errors[0].message).eql(\"must not be blank\");",
+									"});",
+									"",
+									"pm.test(\"respons in < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"headers expected\", function () {",
+									"    pm.response.to.have.header(\"x-valr-upstream-service-time\");",
+									"    pm.response.to.have.header(\"content-type\");",
+									"    pm.response.to.have.header(\"x-xss-protection\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-VALR-API-KEY",
+								"value": "{{yourApiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-SIGNATURE",
+								"value": "{{requestSignature}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-TIMESTAMP",
+								"value": "{{requestTimestamp}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"side\": \"SELL\",\n\t\"price\": \"10000\",\n\t\"pair\": \"BTCZAR\",\n\t\"postOnly\": true,\n\t\"customerOrderId\": \"1235\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.valr.com/v1/orders/limit",
+							"protocol": "https",
+							"host": [
+								"api",
+								"valr",
+								"com"
+							],
+							"path": [
+								"v1",
+								"orders",
+								"limit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Order Limits missing side field",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
+									"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
+									"var requestTimestamp = (new Date()).getTime();",
+									"function getPath(url) {",
+									"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
+									"    var result = url.match(pathRegex);",
+									"    return result && result.length > 1 ? result[1] : ''; ",
+									"}",
+									"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
+									"    var requestPath = getPath(requestUrl);",
+									"    if (httpMethod == 'GET' || !requestBody) {",
+									"        requestBody = ''; ",
+									"    } ",
+									"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
+									"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
+									"    return hmacDigest;",
+									"}",
+									"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
+									"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"response status should be 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Invalid request for missing side field test\", function() {",
+									"    var json = pm.response.json();",
+									"",
+									"    pm.expect(json.code).eql(-11);",
+									"    pm.expect(json.message).eql(\"Invalid Request, please check your request and try again\");",
+									"    pm.expect(json.validationErrors.errors[0].field).eql(\"side\");",
+									"    pm.expect(json.validationErrors.errors[0].message).eql(\"order side incorrect.Can only be BUY or SELL\");",
+									"});",
+									"",
+									"pm.test(\"respons in < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"headers expected\", function () {",
+									"    pm.response.to.have.header(\"x-valr-upstream-service-time\");",
+									"    pm.response.to.have.header(\"content-type\");",
+									"    pm.response.to.have.header(\"x-xss-protection\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-VALR-API-KEY",
+								"value": "{{yourApiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-SIGNATURE",
+								"value": "{{requestSignature}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-TIMESTAMP",
+								"value": "{{requestTimestamp}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"quantity\": \"0.100000\",\n\t\"price\": \"10000\",\n\t\"pair\": \"BTCZAR\",\n\t\"postOnly\": true,\n\t\"customerOrderId\": \"1235\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.valr.com/v1/orders/limit",
+							"protocol": "https",
+							"host": [
+								"api",
+								"valr",
+								"com"
+							],
+							"path": [
+								"v1",
+								"orders",
+								"limit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Order Limits no time in force value",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
+									"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
+									"var requestTimestamp = (new Date()).getTime();",
+									"function getPath(url) {",
+									"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
+									"    var result = url.match(pathRegex);",
+									"    return result && result.length > 1 ? result[1] : ''; ",
+									"}",
+									"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
+									"    var requestPath = getPath(requestUrl);",
+									"    if (httpMethod == 'GET' || !requestBody) {",
+									"        requestBody = ''; ",
+									"    } ",
+									"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
+									"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
+									"    return hmacDigest;",
+									"}",
+									"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
+									"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"response status should be 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Invalid value for time in force test\", function() {",
+									"    var json = pm.response.json();",
+									"",
+									"    pm.expect(json.code).eql(-11);",
+									"    pm.expect(json.message).eql(\"Invalid Request, please check your request and try again\");",
+									"    pm.expect(json.validationErrors.errors[0].field).eql(\"timeInForce\");",
+									"    pm.expect(json.validationErrors.errors[0].message).eql(\"invalid time in force value, must be one of GTC,FOK,IOC\");",
+									"});",
+									"",
+									"pm.test(\"respons in < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"headers expected\", function () {",
+									"    pm.response.to.have.header(\"x-valr-upstream-service-time\");",
+									"    pm.response.to.have.header(\"content-type\");",
+									"    pm.response.to.have.header(\"x-xss-protection\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-VALR-API-KEY",
+								"value": "{{yourApiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-SIGNATURE",
+								"value": "{{requestSignature}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-TIMESTAMP",
+								"value": "{{requestTimestamp}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"side\": \"SELL\",\n\t\"quantity\": \"0.100000\",\n\t\"price\": \"10000\",\n\t\"pair\": \"BTCZAR\",\n\t\"postOnly\": false,\n\t\"customerOrderId\": \"123\",\n    \"timeInForce\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.valr.com/v1/orders/limit",
+							"protocol": "https",
+							"host": [
+								"api",
+								"valr",
+								"com"
+							],
+							"path": [
+								"v1",
+								"orders",
+								"limit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Order Limits invalid time in force value for order",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
+									"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
+									"var requestTimestamp = (new Date()).getTime();",
+									"function getPath(url) {",
+									"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
+									"    var result = url.match(pathRegex);",
+									"    return result && result.length > 1 ? result[1] : ''; ",
+									"}",
+									"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
+									"    var requestPath = getPath(requestUrl);",
+									"    if (httpMethod == 'GET' || !requestBody) {",
+									"        requestBody = ''; ",
+									"    } ",
+									"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
+									"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
+									"    return hmacDigest;",
+									"}",
+									"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
+									"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"response status should be 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Invalid value for time in force field test\", function() {",
+									"    var json = pm.response.json();",
+									"",
+									"    pm.expect(json.code).eql(-11514);",
+									"    pm.expect(json.message).eql(\"Post only not supported for orders other than Good Till Cancelled\");",
+									"});",
+									"",
+									"pm.test(\"respons in < 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"headers expected\", function () {",
+									"    pm.response.to.have.header(\"strict-transport-security\");",
+									"    pm.response.to.have.header(\"content-type\");",
+									"    pm.response.to.have.header(\"x-valr-upstream-service-time\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-VALR-API-KEY",
+								"value": "{{yourApiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-SIGNATURE",
+								"value": "{{requestSignature}}",
+								"type": "text"
+							},
+							{
+								"key": "X-VALR-TIMESTAMP",
+								"value": "{{requestTimestamp}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"side\": \"SELL\",\n\t\"quantity\": \"0.100000\",\n\t\"price\": \"10000\",\n\t\"pair\": \"BTCZAR\",\n\t\"postOnly\": true,\n\t\"customerOrderId\": \"1235\",\n    \"timeInForce\": \"FOK\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.valr.com/v1/orders/limit",
+							"protocol": "https",
+							"host": [
+								"api",
+								"valr",
+								"com"
+							],
+							"path": [
+								"v1",
+								"orders",
+								"limit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
