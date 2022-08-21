@@ -4,6 +4,8 @@
 2. SDETTestProject (Java Selenium BDD)
 3. Test Pack for Buy and Sell feature
 
+![Alt Text](https://github.com/juanclaudeb/VALR-SDET-Test-Project/main/ProjectStructureAnimated.gif)
+
 ---
 		
 # SECTION 1: SDET Postman Tests
