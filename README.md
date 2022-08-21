@@ -155,9 +155,7 @@ CMD:
 		
 		CD ./SDETTestProject (or where ever your project is located)
 		
-	2. To run all tests and generate the report to view, run the following command:
-	
-		mvn clean test verify
+	2. To run all tests and generate the report to view, from the project, right click the testng.xml file and select "Run testng.xml"
 		
 		note- this will run the entire test suite and generate the report to view
 		
