@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="5" time="27.526193">
-    <testcase classname="Validate the VALR sign up page" name="I should be on the sign up page" time="6.33013">
+<testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="5" time="27.543824">
+    <testcase classname="Validate the VALR sign up page" name="I should be on the sign up page" time="6.540809">
         <system-out>
             <![CDATA[Given I am on the home page.................................................passed
 And I click the get started button..........................................passed
@@ -8,7 +8,7 @@ Given I am on the sign up page..............................................pass
 ]]>
         </system-out>
     </testcase>
-    <testcase classname="Validate the VALR sign up page" name="I should be able to insert data into all text fields" time="5.768246">
+    <testcase classname="Validate the VALR sign up page" name="I should be able to insert data into all text fields" time="5.019225">
         <system-out>
             <![CDATA[Given I am on the home page.................................................passed
 And I click the get started button..........................................passed
@@ -20,7 +20,7 @@ And I insert my mrM336 password.............................................pass
 ]]>
         </system-out>
     </testcase>
-    <testcase classname="Navigate the VALR home page" name="Validate the VALR home page" time="5.557327">
+    <testcase classname="Navigate the VALR home page" name="Validate the VALR home page" time="4.878481">
         <system-out>
             <![CDATA[Given I am on the home page.................................................passed
 Then I should see the valr logo image link..................................passed
@@ -43,7 +43,7 @@ Then I should see the valr footer twitter link as i scroll down.............pass
 ]]>
         </system-out>
     </testcase>
-    <testcase classname="Navigate to and validate the valr pay page" name="Valr pay page navigation and confirmation" time="4.979641">
+    <testcase classname="Navigate to and validate the valr pay page" name="Valr pay page navigation and confirmation" time="5.964302">
         <system-out>
             <![CDATA[Given I am on the home page.................................................passed
 And I click the valr pay menu item..........................................passed
@@ -52,7 +52,7 @@ Then I should see the valr pay image........................................pass
 ]]>
         </system-out>
     </testcase>
-    <testcase classname="Navigate to and validate the valr pay page" name="Click get started from valr pay page" time="4.890849">
+    <testcase classname="Navigate to and validate the valr pay page" name="Click get started from valr pay page" time="5.141007">
         <system-out>
             <![CDATA[Given I am on the home page.................................................passed
 And I click the valr pay menu item..........................................passed

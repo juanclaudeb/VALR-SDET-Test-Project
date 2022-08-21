@@ -13,6 +13,7 @@ public class ValrPayPageStepDefinition {
 
     @Given("I am on the valr pay page")
     public void i_am_on_the_valr_pay_page() {
+        Assert.assertTrue(valrPayPage.img_valrPayLogo.isDisplayed());
         Assert.assertEquals("https://www.valr.com/pay", Hook.getDriver().getCurrentUrl());
     }
 

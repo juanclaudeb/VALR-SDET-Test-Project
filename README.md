@@ -89,13 +89,6 @@ Alternatively, the collection can be run using the newman test runner tool: http
             <version>4.3.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
-        <dependency>
-            <groupId>net.masterthought</groupId>
-            <artifactId>maven-cucumber-reporting</artifactId>
-            <version>5.7.1</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -122,6 +115,13 @@ Alternatively, the collection can be run using the newman test runner tool: http
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-testng</artifactId>
             <version>1.2.6</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.trivago.rta/cluecumber-report-plugin -->
+        <dependency>
+            <groupId>com.trivago.rta</groupId>
+            <artifactId>cluecumber-report-plugin</artifactId>
+            <version>2.8.0</version>
         </dependency>
 
 # TEST DESIGN APPROACH:

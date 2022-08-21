@@ -1,8 +1,9 @@
-Hooks\Hook.class
-Pages\SdProductPage.class
-Steps\SdProductStepDefinition.class
-Steps\SdBasketStepDefinition.class
-TestRunners\TestRunner.class
-Pages\SdLoginPage.class
-Pages\SdBasketPage.class
-Steps\SdLoginStepDefinition.class
+TestRunners/FirefoxTestRunner.class
+TestRunners/ChromeTestRunner.class
+Steps/HomePageStepDefinition.class
+Steps/ValrPayPageStepDefinition.class
+Hooks/Hook.class
+Steps/SignupPageStepDefinition.class
+Pages/ValrHomePage.class
+Pages/ValrPayPage.class
+Pages/ValrGetStartedPage.class

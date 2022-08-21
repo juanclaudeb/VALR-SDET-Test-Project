@@ -7,7 +7,7 @@ formatter.feature({
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 5689783500,
+  "duration": 5893351583,
   "status": "passed"
 });
 formatter.background({
@@ -31,14 +31,14 @@ formatter.match({
   "location": "HomePageStepDefinition.i_am_on_the_home_page()"
 });
 formatter.result({
-  "duration": 4782333,
+  "duration": 4468625,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_click_the_get_started_button()"
 });
 formatter.result({
-  "duration": 256413583,
+  "duration": 258002541,
   "status": "passed"
 });
 formatter.scenario({
@@ -58,11 +58,11 @@ formatter.match({
   "location": "SignupPageStepDefinition.i_am_on_the_sign_up_page()"
 });
 formatter.result({
-  "duration": 2770333,
+  "duration": 2164958,
   "status": "passed"
 });
 formatter.after({
-  "duration": 376380542,
+  "duration": 382821750,
   "status": "passed"
 });
 formatter.scenarioOutline({
@@ -128,7 +128,7 @@ formatter.examples({
   "keyword": "Examples"
 });
 formatter.before({
-  "duration": 4972477333,
+  "duration": 4217344666,
   "status": "passed"
 });
 formatter.background({
@@ -152,14 +152,14 @@ formatter.match({
   "location": "HomePageStepDefinition.i_am_on_the_home_page()"
 });
 formatter.result({
-  "duration": 3342792,
+  "duration": 3313041,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_click_the_get_started_button()"
 });
 formatter.result({
-  "duration": 249565750,
+  "duration": 251184041,
   "status": "passed"
 });
 formatter.scenario({
@@ -211,7 +211,7 @@ formatter.match({
   "location": "SignupPageStepDefinition.i_am_on_the_sign_up_page()"
 });
 formatter.result({
-  "duration": 1556167,
+  "duration": 2203541,
   "status": "passed"
 });
 formatter.match({
@@ -224,7 +224,7 @@ formatter.match({
   "location": "SignupPageStepDefinition.i_insert_my_first_name(String)"
 });
 formatter.result({
-  "duration": 36332958,
+  "duration": 42907333,
   "status": "passed"
 });
 formatter.match({
@@ -237,7 +237,7 @@ formatter.match({
   "location": "SignupPageStepDefinition.iInsertMyLast_nameLastName(String)"
 });
 formatter.result({
-  "duration": 36266917,
+  "duration": 37551125,
   "status": "passed"
 });
 formatter.match({
@@ -250,7 +250,7 @@ formatter.match({
   "location": "SignupPageStepDefinition.iInsertMyEmail_addressEmailAddress(String)"
 });
 formatter.result({
-  "duration": 52730875,
+  "duration": 44054583,
   "status": "passed"
 });
 formatter.match({
@@ -263,11 +263,11 @@ formatter.match({
   "location": "SignupPageStepDefinition.iInsertMyPasswordPassword(String)"
 });
 formatter.result({
-  "duration": 37162959,
+  "duration": 40914958,
   "status": "passed"
 });
 formatter.after({
-  "duration": 378810167,
+  "duration": 379751416,
   "status": "passed"
 });
 formatter.uri("valrHomePage.feature");
@@ -279,7 +279,7 @@ formatter.feature({
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 4783114209,
+  "duration": 4125522208,
   "status": "passed"
 });
 formatter.scenario({
@@ -384,130 +384,130 @@ formatter.match({
   "location": "HomePageStepDefinition.i_am_on_the_home_page()"
 });
 formatter.result({
-  "duration": 3073084,
+  "duration": 2889500,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_valr_logo_image_link()"
 });
 formatter.result({
-  "duration": 22463833,
+  "duration": 21112167,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_get_started_button()"
 });
 formatter.result({
-  "duration": 24500167,
+  "duration": 22332250,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_sign_in_button()"
 });
 formatter.result({
-  "duration": 17451541,
+  "duration": 14584042,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_start_trading_button()"
 });
 formatter.result({
-  "duration": 35998125,
+  "duration": 16400667,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_valr_app_image_link()"
 });
 formatter.result({
-  "duration": 12017500,
+  "duration": 10501625,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_details_menu_section()"
 });
 formatter.result({
-  "duration": 19861833,
+  "duration": 15300417,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_buy_sell_menu_section()"
 });
 formatter.result({
-  "duration": 16287875,
+  "duration": 16900958,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_valr_pay_menu_section()"
 });
 formatter.result({
-  "duration": 16323250,
+  "duration": 15123833,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_exchange_drop_down_menu_section()"
 });
 formatter.result({
-  "duration": 16024417,
+  "duration": 16806916,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_buy_sell_button_link_as_i_scroll_down()"
 });
 formatter.result({
-  "duration": 28093792,
+  "duration": 27579000,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_crypto_assets_icon_as_i_scroll_down()"
 });
 formatter.result({
-  "duration": 27155541,
+  "duration": 30988875,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_mobile_application_images_as_i_scroll_down()"
 });
 formatter.result({
-  "duration": 23546417,
+  "duration": 29637333,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_learn_more_button_as_i_scroll_down()"
 });
 formatter.result({
-  "duration": 33109583,
+  "duration": 32190209,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_google_play_app_link_as_i_scroll_down()"
 });
 formatter.result({
-  "duration": 25540542,
+  "duration": 25061708,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_apple_app_store_link_as_i_scroll_down()"
 });
 formatter.result({
-  "duration": 23040125,
+  "duration": 28378208,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_privacy_policy_footer_section_as_i_scroll_down()"
 });
 formatter.result({
-  "duration": 24899666,
+  "duration": 27571250,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_should_see_the_valr_footer_twitter_link_as_i_scroll_down()"
 });
 formatter.result({
-  "duration": 28335083,
+  "duration": 26041708,
   "status": "passed"
 });
 formatter.after({
-  "duration": 376490417,
+  "duration": 373557667,
   "status": "passed"
 });
 formatter.uri("valrPayPage.feature");
@@ -519,7 +519,7 @@ formatter.feature({
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 4331692917,
+  "duration": 5302486416,
   "status": "passed"
 });
 formatter.background({
@@ -543,14 +543,14 @@ formatter.match({
   "location": "HomePageStepDefinition.i_am_on_the_home_page()"
 });
 formatter.result({
-  "duration": 4581875,
+  "duration": 3131208,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_click_the_valr_pay_menu_item()"
 });
 formatter.result({
-  "duration": 254280750,
+  "duration": 258113750,
   "status": "passed"
 });
 formatter.scenario({
@@ -575,22 +575,22 @@ formatter.match({
   "location": "ValrPayPageStepDefinition.i_am_on_the_valr_pay_page()"
 });
 formatter.result({
-  "duration": 4032375,
+  "duration": 12428375,
   "status": "passed"
 });
 formatter.match({
   "location": "ValrPayPageStepDefinition.i_should_see_the_valr_pay_image()"
 });
 formatter.result({
-  "duration": 10213584,
+  "duration": 10964417,
   "status": "passed"
 });
 formatter.after({
-  "duration": 374839750,
+  "duration": 377177792,
   "status": "passed"
 });
 formatter.before({
-  "duration": 4013592000,
+  "duration": 4268882292,
   "status": "passed"
 });
 formatter.background({
@@ -614,14 +614,14 @@ formatter.match({
   "location": "HomePageStepDefinition.i_am_on_the_home_page()"
 });
 formatter.result({
-  "duration": 2376083,
+  "duration": 2947791,
   "status": "passed"
 });
 formatter.match({
   "location": "HomePageStepDefinition.i_click_the_valr_pay_menu_item()"
 });
 formatter.result({
-  "duration": 249281500,
+  "duration": 245485709,
   "status": "passed"
 });
 formatter.scenario({
@@ -646,18 +646,18 @@ formatter.match({
   "location": "ValrPayPageStepDefinition.i_am_on_the_valr_pay_page()"
 });
 formatter.result({
-  "duration": 2010917,
+  "duration": 10881083,
   "status": "passed"
 });
 formatter.match({
   "location": "ValrPayPageStepDefinition.i_scroll_down_and_click_on_the_second_get_started_button()"
 });
 formatter.result({
-  "duration": 233097959,
+  "duration": 239593958,
   "status": "passed"
 });
 formatter.after({
-  "duration": 390490125,
+  "duration": 373216375,
   "status": "passed"
 });
 });

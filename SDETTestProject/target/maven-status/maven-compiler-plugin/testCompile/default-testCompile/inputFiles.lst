@@ -1,8 +1,9 @@
-C:\AutomationLocal\Automation\SDETTestProject\src\test\java\Pages\SdProductPage.java
-C:\AutomationLocal\Automation\SDETTestProject\src\test\java\Pages\SdBasketPage.java
-C:\AutomationLocal\Automation\SDETTestProject\src\test\java\TestRunners\TestRunner.java
-C:\AutomationLocal\Automation\SDETTestProject\src\test\java\Steps\SdBasketStepDefinition.java
-C:\AutomationLocal\Automation\SDETTestProject\src\test\java\Steps\SdProductStepDefinition.java
-C:\AutomationLocal\Automation\SDETTestProject\src\test\java\Hooks\Hook.java
-C:\AutomationLocal\Automation\SDETTestProject\src\test\java\Pages\SdLoginPage.java
-C:\AutomationLocal\Automation\SDETTestProject\src\test\java\Steps\SdLoginStepDefinition.java
+/Users/juan-claudeb/personal/VALR/github/VALR-SDET-Test-Project/SDETTestProject/src/test/java/Steps/SignupPageStepDefinition.java
+/Users/juan-claudeb/personal/VALR/github/VALR-SDET-Test-Project/SDETTestProject/src/test/java/Steps/HomePageStepDefinition.java
+/Users/juan-claudeb/personal/VALR/github/VALR-SDET-Test-Project/SDETTestProject/src/test/java/TestRunners/ChromeTestRunner.java
+/Users/juan-claudeb/personal/VALR/github/VALR-SDET-Test-Project/SDETTestProject/src/test/java/Pages/ValrPayPage.java
+/Users/juan-claudeb/personal/VALR/github/VALR-SDET-Test-Project/SDETTestProject/src/test/java/Hooks/Hook.java
+/Users/juan-claudeb/personal/VALR/github/VALR-SDET-Test-Project/SDETTestProject/src/test/java/TestRunners/FirefoxTestRunner.java
+/Users/juan-claudeb/personal/VALR/github/VALR-SDET-Test-Project/SDETTestProject/src/test/java/Pages/ValrHomePage.java
+/Users/juan-claudeb/personal/VALR/github/VALR-SDET-Test-Project/SDETTestProject/src/test/java/Pages/ValrGetStartedPage.java
+/Users/juan-claudeb/personal/VALR/github/VALR-SDET-Test-Project/SDETTestProject/src/test/java/Steps/ValrPayPageStepDefinition.java
