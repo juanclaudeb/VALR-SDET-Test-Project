@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "93700ae3-e38b-455e-8bbf-00507ec320e5",
-		"name": "VALR API COLLECTION",
+		"_postman_id": "bc01b265-59a5-4a49-b7f4-d4cf69ae67ec",
+		"name": "VALR API COLLECTION  TESTS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "19044530"
 	},
@@ -324,6 +324,44 @@
 					},
 					"response": []
 				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
+							"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
+							"var requestTimestamp = (new Date()).getTime();",
+							"function getPath(url) {",
+							"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
+							"    var result = url.match(pathRegex);",
+							"    return result && result.length > 1 ? result[1] : ''; ",
+							"}",
+							"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
+							"    var requestPath = getPath(requestUrl);",
+							"    if (httpMethod == 'GET' || !requestBody) {",
+							"        requestBody = ''; ",
+							"    } ",
+							"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
+							"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
+							"    return hmacDigest;",
+							"}",
+							"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
+							"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
 			]
 		},
 		{
@@ -336,25 +374,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
-									"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
-									"var requestTimestamp = (new Date()).getTime();",
-									"function getPath(url) {",
-									"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
-									"    var result = url.match(pathRegex);",
-									"    return result && result.length > 1 ? result[1] : ''; ",
-									"}",
-									"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
-									"    var requestPath = getPath(requestUrl);",
-									"    if (httpMethod == 'GET' || !requestBody) {",
-									"        requestBody = ''; ",
-									"    } ",
-									"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
-									"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
-									"    return hmacDigest;",
-									"}",
-									"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
-									"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -443,25 +463,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
-									"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
-									"var requestTimestamp = (new Date()).getTime();",
-									"function getPath(url) {",
-									"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
-									"    var result = url.match(pathRegex);",
-									"    return result && result.length > 1 ? result[1] : ''; ",
-									"}",
-									"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
-									"    var requestPath = getPath(requestUrl);",
-									"    if (httpMethod == 'GET' || !requestBody) {",
-									"        requestBody = ''; ",
-									"    } ",
-									"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
-									"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
-									"    return hmacDigest;",
-									"}",
-									"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
-									"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -550,25 +552,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
-									"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
-									"var requestTimestamp = (new Date()).getTime();",
-									"function getPath(url) {",
-									"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
-									"    var result = url.match(pathRegex);",
-									"    return result && result.length > 1 ? result[1] : ''; ",
-									"}",
-									"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
-									"    var requestPath = getPath(requestUrl);",
-									"    if (httpMethod == 'GET' || !requestBody) {",
-									"        requestBody = ''; ",
-									"    } ",
-									"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
-									"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
-									"    return hmacDigest;",
-									"}",
-									"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
-									"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -657,25 +641,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
-									"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
-									"var requestTimestamp = (new Date()).getTime();",
-									"function getPath(url) {",
-									"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
-									"    var result = url.match(pathRegex);",
-									"    return result && result.length > 1 ? result[1] : ''; ",
-									"}",
-									"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
-									"    var requestPath = getPath(requestUrl);",
-									"    if (httpMethod == 'GET' || !requestBody) {",
-									"        requestBody = ''; ",
-									"    } ",
-									"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
-									"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
-									"    return hmacDigest;",
-									"}",
-									"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
-									"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -871,25 +837,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
-									"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
-									"var requestTimestamp = (new Date()).getTime();",
-									"function getPath(url) {",
-									"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
-									"    var result = url.match(pathRegex);",
-									"    return result && result.length > 1 ? result[1] : ''; ",
-									"}",
-									"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
-									"    var requestPath = getPath(requestUrl);",
-									"    if (httpMethod == 'GET' || !requestBody) {",
-									"        requestBody = ''; ",
-									"    } ",
-									"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
-									"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
-									"    return hmacDigest;",
-									"}",
-									"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
-									"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -968,6 +916,44 @@
 						}
 					},
 					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var YOUR_API_KEY = postman.getEnvironmentVariable('yourApiKey');",
+							"var YOUR_API_SECRET = postman.getEnvironmentVariable('yourApiSecret');",
+							"var requestTimestamp = (new Date()).getTime();",
+							"function getPath(url) {",
+							"    var pathRegex = /(?:.+?\\:\\/\\/.+?)?(\\/.+)/;",
+							"    var result = url.match(pathRegex);",
+							"    return result && result.length > 1 ? result[1] : ''; ",
+							"}",
+							"function getHmacDigest(httpMethod, requestUrl, requestBody) {",
+							"    var requestPath = getPath(requestUrl);",
+							"    if (httpMethod == 'GET' || !requestBody) {",
+							"        requestBody = ''; ",
+							"    } ",
+							"    var requestData = [requestTimestamp, httpMethod.toUpperCase(), requestPath, requestBody].join(\"\");",
+							"    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, YOUR_API_SECRET));",
+							"    return hmacDigest;",
+							"}",
+							"postman.setEnvironmentVariable('requestSignature', getHmacDigest(request['method'], request['url'], request['data']));",
+							"postman.setEnvironmentVariable('requestTimestamp', requestTimestamp);"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		}
